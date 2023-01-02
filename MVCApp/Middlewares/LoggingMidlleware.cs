@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System;
 using MVCApp.Models.Db;
 using MVCApp.Models.Repositories;
+using System.Security.Policy;
 
 namespace MVCApp.Middlewares
 {
@@ -22,10 +23,17 @@ namespace MVCApp.Middlewares
         /// <summary>
         ///  Необходимо реализовать метод Invoke  или InvokeAsync
         /// </summary>
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, IRequestRepository _repo)
         {
             // Для логирования данных о запросе используем свойста объекта HttpContext
             Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
+
+            var newRequest = new Request()
+            {
+                Url = $"http://{context.Request.Host.Value + context.Request.Path}"
+            };
+
+            await _repo.AddRequest(newRequest);
 
             // Передача запроса далее по конвейеру
             await _next.Invoke(context);

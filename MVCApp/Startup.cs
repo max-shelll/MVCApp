@@ -31,6 +31,7 @@ namespace MVCApp
             services.AddControllersWithViews();
             // Регистрация сервиса репозитория для взаимодействия с базой данных
             services.AddTransient<IBlogRepository, BlogRepository>();
+            services.AddTransient<IRequestRepository, RequestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
