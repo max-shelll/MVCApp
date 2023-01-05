@@ -23,7 +23,9 @@ namespace MVCApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Метод, для добавления служб в контейнер
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
@@ -34,7 +36,9 @@ namespace MVCApp
             services.AddTransient<IRequestRepository, RequestRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Метод, для настройки конвейера HTTP-запросов
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -44,7 +48,7 @@ namespace MVCApp
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // Значение HSTS по умолчанию равно 30 дням. Возможно, вы захотите изменить это для производственных сценариев, см. https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -52,6 +56,7 @@ namespace MVCApp
 
             // Подключаем логирвоание с использованием ПО промежуточного слоя
             app.UseMiddleware<LoggingMiddleware>();
+
 
             app.UseRouting();
 
@@ -63,6 +68,8 @@ namespace MVCApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            
         }
     }
 }

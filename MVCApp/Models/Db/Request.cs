@@ -3,6 +3,9 @@ using System;
 
 namespace MVCApp.Models.Db
 {
+    /// <summary>
+    /// Модель запросов в блоге
+    /// </summary>
     public class Request
     {
         public Guid Id { get; set; }

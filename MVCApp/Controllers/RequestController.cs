@@ -16,6 +16,9 @@ namespace MVCApp.Controllers
             _repo = repo;
         }
 
+        /// <summary>
+        ///  Метод, возвращающий страницу с логами
+        /// </summary>
         public async Task<IActionResult> Logs()
         {
             var logs = await _repo.GetRequests();

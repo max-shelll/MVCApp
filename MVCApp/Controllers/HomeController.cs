@@ -13,23 +13,26 @@ namespace MVCApp.Controllers
 {
     public class HomeController : Controller
     {
-        // ссылка на репозиторий
         private readonly IBlogRepository _repo;
         private readonly ILogger<HomeController> _logger;
 
-        // Также добавим инициализацию в конструктор
         public HomeController(ILogger<HomeController> logger, IBlogRepository repo)
         {
             _logger = logger;
             _repo = repo;
         }
 
-        // Сделаем метод асинхронным
+        /// <summary>
+        ///  Метод, возвращающий домашнюю страницу
+        /// </summary>
         public async Task<IActionResult> Index()
         {
             return View();
         }
 
+        /// <summary>
+        ///  Метод, возвращающий страницу конфиденциальности
+        /// </summary>
         public IActionResult Privacy()
         {
             return View();
@@ -39,12 +42,6 @@ namespace MVCApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public async Task<IActionResult> Authors()
-        {
-            var authors = await _repo.GetUsers();
-            return View(authors);
         }
     }
 }

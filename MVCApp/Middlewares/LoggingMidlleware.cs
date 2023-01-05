@@ -21,7 +21,7 @@ namespace MVCApp.Middlewares
         }
 
         /// <summary>
-        ///  Необходимо реализовать метод Invoke  или InvokeAsync
+        ///  Метод логирования данных о запросе
         /// </summary>
         public async Task InvokeAsync(HttpContext context, IRequestRepository _repo)
         {

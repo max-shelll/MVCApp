@@ -7,15 +7,16 @@ namespace MVCApp.Models.Repositories
 {
     public class BlogRepository : IBlogRepository
     {
-        // ссылка на контекст
         private readonly BlogContext _context;
 
-        // Метод-конструктор для инициализации
         public BlogRepository(BlogContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Метод, для добавления пользователя в бд
+        /// </summary>
         public async Task AddUser(User user)
         {
             user.JoinDate = DateTime.Now;
@@ -30,6 +31,9 @@ namespace MVCApp.Models.Repositories
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Метод, для получения всех пользователей из бд
+        /// </summary>
         public async Task<User[]> GetUsers()
         {
             // Получим всех активных пользователей

@@ -7,15 +7,16 @@ namespace MVCApp.Models.Repositories
 {
     public class RequestRepository : IRequestRepository
     {
-        // ссылка на контекст
         private readonly BlogContext _context;
 
-        // Метод-конструктор для инициализации
         public RequestRepository(BlogContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Метод, для добавления запроса в бд
+        /// </summary>
         public async Task AddRequest(Request request)
         {
             request.Date = DateTime.Now;
@@ -30,6 +31,9 @@ namespace MVCApp.Models.Repositories
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Метод, для получения всех запросов из бд
+        /// </summary>
         public async Task<Request[]> GetRequests()
         {
             // Получим всех активных пользователей
